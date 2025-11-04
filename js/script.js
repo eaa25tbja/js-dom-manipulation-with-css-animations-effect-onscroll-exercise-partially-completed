@@ -5,19 +5,25 @@
 --------------------------------------------------- */
 const sections = document.querySelectorAll("section");
 
-// Overvåg scroll og aktiver .show-animate på sektioner
-window.onscroll = () => {
-  sections.forEach((sec) => {
-    const scrollDistance = window.scrollY;
-    const secDistance = sec.offsetTop;
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+  const viewportHeight = window.innerHeight;
 
-    if (scrollDistance >= secDistance) {
+  sections.forEach((sec) => {
+    const secTop = sec.offsetTop;
+    const secHeight = sec.offsetHeight;
+
+    // Hvis sektionen er delvist synlig i viewporten
+    if (
+      scrollY + viewportHeight > secTop + 100 &&
+      scrollY < secTop + secHeight - 100
+    ) {
       sec.classList.add("show-animate");
     } else {
       sec.classList.remove("show-animate");
     }
   });
-};
+});
 
 /* -------------------------------------------------
    2) HOVER-EFFEKT PÅ FØRSTE SEKTION (eksempel)
@@ -52,7 +58,13 @@ if (sectionOne) {
    3) Tilføj en click-eventlistener
    4) Brug this.classList.toggle("anim-scale") inde i funktionen
 --------------------------------------------------- */
+const dogElem = document.getElementById("dogElem");
 
+if (dogElem) {
+  dogElem.addEventListener("click", function () {
+    this.classList.toggle("anim-scale");
+  });
+}
 /* -------------------------------------------------
    🐻 ISBJØRN → anim-rotate
    - Formål: når man klikker på isbjørnen, skal billedet rotere + zoome.
@@ -65,7 +77,13 @@ if (sectionOne) {
    3) Tilføj en click-eventlistener
    4) Brug this.classList.toggle("anim-rotate")
 --------------------------------------------------- */
+const bearElem = document.getElementById("bearElem");
 
+if (bearElem) {
+  bearElem.addEventListener("click", function () {
+    this.classList.toggle("anim-rotate");
+  });
+}
 /* -------------------------------------------------
    🐴 HEST → anim-skew
    - Formål: når man klikker på hesten, skal billedet skævvrides + zoome.
@@ -78,7 +96,13 @@ if (sectionOne) {
    3) Tilføj en click-eventlistener
    4) Brug this.classList.toggle("anim-skew")
 --------------------------------------------------- */
+const horseElem = document.getElementById("horseElem");
 
+if (horseElem) {
+  horseElem.addEventListener("click", function () {
+    this.classList.toggle("anim-skew");
+  });
+}
 /* -------------------------------------------------
    4) OPGAVE: LYD VED KLIK
    I denne opgave skal du tilføje lyd til dine klik-animationer.
@@ -93,12 +117,36 @@ if (sectionOne) {
       - Sørg for, at afspilning sker efter classList.toggle().
 --------------------------------------------------- */
 
-/*
-TODO:
-const soundDog = ...
-const soundHorse = ...
-const soundBear = ...
-*/
+const getHorseBtn = document.getElementById("horseElem");
+const getBearBtn = document.getElementById("bearElem");
+const getDogBtn = document.getElementById("dogElem");
+
+const soundHorse = new Audio();
+soundHorse.src = "../sound/elephant.wav";
+
+const soundBear = new Audio();
+soundBear.src = "../sound/monkey.wav";
+
+const soundDog = new Audio();
+soundDog.src = "../sound/dog.wav";
+
+if (getHorseBtn) {
+  getHorseBtn.addEventListener("click", () => {
+    soundHorse.play();
+  });
+}
+
+if (getBearBtn) {
+  getBearBtn.addEventListener("click", () => {
+    soundBear.play();
+  });
+}
+
+if (getDogBtn) {
+  getDogBtn.addEventListener("click", () => {
+    soundDog.play();
+  });
+}
 
 /* -------------------------------------------------
    5) OPGAVE: NY SEKTION – SEC6
@@ -113,3 +161,11 @@ const soundBear = ...
 --------------------------------------------------- */
 
 // TODO: Tilføj din egen klikfunktion for billedet i sec6 her
+
+const getDog2Btn = document.getElementById("dog2Elem");
+
+if (getDog2Btn) {
+  getDog2Btn.addEventListener("click", () => {
+    getDog2Btn.classList.toggle("anim-tilt");
+  });
+}

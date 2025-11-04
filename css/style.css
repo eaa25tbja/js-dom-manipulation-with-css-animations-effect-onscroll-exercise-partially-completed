@@ -1,74 +1,82 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
-    background: #1f242d;
-    overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #1f242d;
+  overflow: hidden;
 }
 
 .sec2 {
-    background-color: rgb(96,30,150);
+  background-color: rgb(96, 30, 150);
 }
 
 .sec3 {
-    background-color: #056964;
+  background-color: #056964;
 }
 
 .sec4 {
-    background-color: #ffa600;
+  background-color: #ffa600;
 }
 
 .sec2 {
-    background-color: rgb(255,0,85);
+  background-color: rgb(255, 0, 85);
+}
+
+.sec6 {
+  background-color: teal;
 }
 
 h1 {
-    font-size: 90px;
-    color: #fff;
+  font-size: 90px;
+  color: #fff;
 }
 
 h2 {
-    font-size: 75px;
-    color: #fff;
+  font-size: 75px;
+  color: #fff;
 }
 
 p {
-    font-size: 35px;
-    color: #0ef;
-    font-weight: 600;
+  font-size: 35px;
+  color: #0ef;
+  font-weight: 600;
 }
 
 .sec2 p {
-    color: #0f0;
+  color: #0f0;
 }
 
 .sec3 p {
-    color: #ff0;
+  color: #ff0;
 }
 
 .sec4 p {
-    color: #056964;
+  color: #056964;
+}
+
+.sec6 h2 {
+  color: magenta;
 }
 
 .sec5 .images {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
 }
 
 .sec5 .images img {
-    max-width: 350px;
+  max-width: 350px;
 }
 
 /* ----------------------------------------------
@@ -76,19 +84,19 @@ p {
 ---------------------------------------------- */
 
 section .animate {
-    opacity: 0;
-    filter: blur(5px);
-    transition: 0.5s;
+  opacity: 0;
+  filter: blur(5px);
+  transition: 0.5s;
 }
 
 section.show-animate .animate {
-    opacity: 1;
-    filter: blur(0px);
+  opacity: 1;
+  filter: blur(0px);
 }
 
 .scale {
-	transform: scale(1.2);
-    transition: transform 0.3s ease-in-out; 
+  transform: scale(1.2);
+  transition: transform 0.3s ease-in-out;
 }
 
 /* ----------------------------------------------
@@ -96,27 +104,35 @@ section.show-animate .animate {
 ---------------------------------------------- */
 
 .sec2 .animate {
-    transform: translateX(100%);
+  transform: translateX(100%);
 }
 
 .sec2.show-animate .animate {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
 .sec3 .animate {
-    transform: scale(0.7);
+  transform: scale(0.7);
 }
 
 .sec3.show-animate .animate {
-    transform: scale(1);
+  transform: scale(1);
 }
 
 .sec4 .animate {
-    transform: rotate(30deg);
+  transform: rotate(30deg);
 }
 
 .sec4.show-animate .animate {
-    transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.sec6 .animate {
+  transform: translateX(100%);
+}
+
+.sec.show-animate .animate {
+  transform: translateX(0);
 }
 
 /* ----------------------------------------------
@@ -149,36 +165,74 @@ section.show-animate .animate {
    Lav en ny sluttilstand .anim-skew, 
    som kombinerer translateX(0), skew(-20deg) og scale(1.16) */
 
+.sec5.show-animate .animate.anim-skew {
+  transform: translateX(0) skew(-20deg) scale(1.16);
+  transition: transform 0.4s ease-in-out;
+}
 
 /* TODO: Opgave 2.2
    Lav en ny sluttilstand .anim-rotate, 
    som kombinerer translateX(0), rotate(210deg) og scale(1.2) */
 
+.sec5.show-animate .animate.anim-rotate {
+  transform: translateX(0) rotate(210deg) scale(1.2);
+  transition: transform 0.4s ease-in-out;
+}
+
+/* section 6 animation */
+
+/* benytter keyframes */
+@keyframes tiltDance {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(6deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-6deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.sec6 .animate {
+  transform: rotate(0deg);
+}
+
+.sec6.show-animate .animate.anim-tilt {
+  transform-origin: center bottom;
+  animation: tiltDance 1.1s ease-in-out infinite;
+}
 
 /* ----------------------------------------------
    RESPONSIVE LAYOUTS (valgfrit for styling)
 ---------------------------------------------- */
 
 p.animate {
-    transition-delay: 0.3s;
+  transition-delay: 0.3s;
 }
 
 /* Medium devices such as tablets  */
 @media only screen and (min-width: 640px) and (max-width: 800px) {
-    .sec5 .images {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 40px;
-    }
+  .sec5 .images {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+  }
 }
 
 /* Small devices such as mobile  */
 @media only screen and (min-width: 480px) and (max-width: 639px) {
-    .sec5 .images {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 25px;
-    }
+  .sec5 .images {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+  }
 }
